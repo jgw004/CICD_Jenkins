@@ -1,30 +1,32 @@
 #!/bin/bash
+## This script is for updating the Linux os, installing necessary packages for Docker, and giving sudo access for Docker commands.
 
-# Update package list
+
+##1 -system package update
 sudo apt-get update
 
-# Install necessary packages to use HTTPS repositories
+##2 -necessary packages for HTTPS repositories
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
 
-# Add Docker GPG key
+##3 -Docker GPG key
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-# Add Docker repository to sources list
+##4 -adds Docker repository to sources list
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Update package list for the addition to be recognized
+##5 -package list needs update for new additions to be recognized
 sudo apt-get update
 
-# Install Docker CE
+##6 -Docker CE package
 sudo apt-get install docker-ce -y
 
-# Add current user to the docker group to run Docker commands without sudo
+##7 -add the current user to docker group; Docker commands without sudo
 sudo usermod -aG docker ${USER}
 
-# Activate the changes to groups
+##8 -activate changes to groups
 su - ${USER}
 
-# Verify Docker is installed and working
+##9 -verify Docker installation
 sudo systemctl status docker
 
 
