@@ -4,7 +4,7 @@
 ##1 -system package update
 sudo apt-get update
 
-##2 -Java 11
+##2 -Java 11 (support ends Sep. 2024)
 sudo apt-get install -y openjdk-11-jdk
 
 ##3 -Jenkins key | add to system
