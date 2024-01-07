@@ -1,23 +1,23 @@
 #!/bin/bash
-# This script installs Jenkins on an Ubuntu server
+## This script is for installing Jenkins on an Ubuntu server.
 
-# Update package lists
+##1 -system package update
 sudo apt-get update
 
-# Install Java 11
+##2 -Java 11
 sudo apt-get install -y openjdk-11-jdk
 
-# Download Jenkins key and add it to system
+##3 -Jenkins key | add to system
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
-# Add Jenkins to system package source list
+##4 -add Jenkins to sys package source list
 sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null'
 
-# Update package lists again to include Jenkins and install it
+##5 -package list needs update to include Jenkins then install Jenkins
 sudo apt-get update
 sudo apt-get install -y jenkins
 
-# Verify Jenkins is installed and working
+##6 -verify Jenkins is installed and working
 sudo systemctl status jenkins
 
 
